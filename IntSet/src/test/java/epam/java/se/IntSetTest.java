@@ -61,7 +61,6 @@ public class IntSetTest {
         final IntSet union = set.union(set1);
         assertTrue(union.contains(14));
         assertTrue(union.contains(128));
-        //set.remove(14);
         assertTrue(union.contains(25));
     }
 
@@ -77,7 +76,6 @@ public class IntSetTest {
         final IntSet intersect = set.intersection(set1);
         assertTrue(intersect.contains(14));
         assertFalse(intersect.contains(128));
-        //set.remove(14);
         assertFalse(intersect.contains(0));
     }
 
@@ -93,7 +91,6 @@ public class IntSetTest {
         final IntSet diff = set.difference(set1);
         assertFalse(diff.contains(14));
         assertTrue(diff.contains(128));
-        //set.remove(14);
         assertTrue(diff.contains(25));
     }
 
