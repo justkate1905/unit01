@@ -1,8 +1,8 @@
 package epam.java.se;
 
-/**
- * Created by Katerina on 01.02.2017.
- */
+/** Класс для хранения битовых полей
+ *
+ * */
 public class IntSet {
     private long[] data = new long[1];
 
@@ -21,6 +21,10 @@ public class IntSet {
         this.data = data;
     }
 
+    /** Добавление элемента в множество
+     *
+     * @param value Значение добавляемого элемента
+     */
     public void add(int value) {
         int index = value/64;
         if(index==-1){
@@ -38,6 +42,11 @@ public class IntSet {
         }
     }
 
+    /** Проверка множества на содержание элемента
+     *
+     * @param value значение элемента
+     * @return результат проверки
+     */
     public boolean contains(int value) {
         int index = value/64;
         if(index==-1 || index>=data.length){
@@ -51,6 +60,10 @@ public class IntSet {
         }
     }
 
+    /** Удаление элемента из множества
+     *
+     * @param value значение элемента
+     */
     public void remove(int value) {
         int index = value/64;
         if(index==-1 || index>=data.length){
@@ -64,6 +77,11 @@ public class IntSet {
 
     }
 
+    /** Операция объединения множеств
+     *
+     * @param other второе множество
+     * @return результат операции объединения в виде множества
+     */
     public IntSet union(IntSet other) {
         int thisLen = this.data.length;
         int otherLen = other.data.length;
@@ -85,6 +103,11 @@ public class IntSet {
         return new IntSet(temp);
     }
 
+    /** Операция пересечения множества
+     *
+     * @param other второе множество
+     * @return результат операции пересечения в виде множества
+     */
     public IntSet intersection(IntSet other) {
         int thisLen = this.data.length;
         int otherLen = other.data.length;
@@ -106,6 +129,11 @@ public class IntSet {
         return new IntSet(temp);
     }
 
+    /** Операция разности множеств
+     *
+     * @param other второе множество
+     * @return результат операции разности в виде множества
+     */
     public IntSet difference(IntSet other) {
         int thisLen = this.data.length;
         int otherLen = other.data.length;
@@ -118,6 +146,11 @@ public class IntSet {
         return new IntSet(temp);
     }
 
+    /** Проверка, является ли текущее множество подмножеством
+     *
+     * @param other множество для проверки на содержание текущего подмножества
+     * @return результат проверки
+     */
     public boolean isSubsetOf(IntSet other) {
         int thisLen = this.data.length;
         int otherLen = other.data.length;
@@ -131,7 +164,6 @@ public class IntSet {
                 }
             }
         }
-
         return true;
     }
 }
