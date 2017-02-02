@@ -12,9 +12,6 @@ public class IntSet {
     public IntSet(long[] value){
         this.data = value;
     }
-    public IntSet(IntSet value){
-
-    }
 
     public long[] getData() {
         return data;
@@ -113,32 +110,23 @@ public class IntSet {
         int thisLen = this.data.length;
         int otherLen = other.data.length;
         long[] temp;
-        if(thisLen<=otherLen){
-            temp = new long[otherLen];
-            System.arraycopy(other.data,0,temp,0,otherLen);
-            for (int i = 0; i <thisLen; i++){
-                temp[i]^=this.data[i];
-            }
-        }
-        else{
             temp = new long[thisLen];
             System.arraycopy(this.data,0,temp,0,thisLen);
-            for (int i = 0; i <otherLen; i++){
-                temp[i]^= other.data[i];
+            for (int i = 0; i <thisLen; i++){
+                temp[i] &= ~other.data[i];
             }
-        }
         return new IntSet(temp);
     }
 
     public boolean isSubsetOf(IntSet other) {
         int thisLen = this.data.length;
         int otherLen = other.data.length;
-        if (thisLen < otherLen){
+        if (thisLen > otherLen){
             return false;
         }
         else{
-            for (int i = 0; i <otherLen; i++){
-                if((other.data[i]& ~this.data[i])!=0){
+            for (int i = 0; i <thisLen; i++){
+                if((this.data[i]& ~other.data[i])!=0){
                     return false;
                 }
             }

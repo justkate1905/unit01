@@ -85,12 +85,12 @@ public class IntSetTest {
         final IntSet set1 = new IntSet();
         set.add(0);
         set.add(128);
-        set.add(14);
-        set.add(25);
         set1.add(14);
-        final IntSet diff = set.difference(set1);
+        set1.add(25);
+        set.add(14);
+        final IntSet diff = set1.difference(set);
         assertFalse(diff.contains(14));
-        assertTrue(diff.contains(128));
+        assertFalse(diff.contains(128));
         assertTrue(diff.contains(25));
     }
 
@@ -98,7 +98,6 @@ public class IntSetTest {
     public void isSubsetOf() throws Exception {
         final IntSet set = new IntSet();
         final IntSet set1 = new IntSet();
-        set.add(0);
         set.add(128);
         set.add(14);
         set.add(25);
